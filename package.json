@@ -8,6 +8,7 @@
     "url": "https://github.com/thanhson1085/swagger-combined.git"
   },
   "dependencies": {
+    "config": "^1.15.0",
     "express": "^4.13.3",
     "q": "^1.4.1",
     "request": "^2.60.0"
@@ -16,6 +17,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "swagger",
+    "swagger-ui",
+    "microservices"
+  ],
   "author": "Nguyen Sy Thanh Son <thanhson1085@gmail.com> (https://sonnguyen.ws)",
   "license": "MIT"
 }

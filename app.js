@@ -1,4 +1,5 @@
 var http = require('http');
+var config = require('config');
 var request = require('request');
 var q = require('q');
 var express = require('express');
@@ -11,10 +12,10 @@ app.use(function(req, res, next) {
 });
 
 // list all swagger document urls
-var listUrl = ['http://192.168.1.191:7007/docs', 'http://192.168.1.191:7010/docs'];
+var listUrl = config.get("list_url");
 
 // general infor of your application
-var info = { title: 'Example API', version: '1.0' };
+var info = config.get("info");
 app.get('/', function(req, res) {
     getApis(listUrl).then(function(data){
         var ret = data.reduce(function(a, i){
@@ -43,7 +44,6 @@ app.get('/', function(req, res) {
 var server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;
-
     console.log('Combines swaggers http://%s:%s', host, port);
 });
 
