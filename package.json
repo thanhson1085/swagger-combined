@@ -1,0 +1,21 @@
+{
+  "name": "swagger-combined",
+  "version": "1.0.1",
+  "description": "Combines Swagger documents",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thanhson1085/swagger-combined.git"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "q": "^1.4.1",
+    "request": "^2.60.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nguyen Sy Thanh Son <thanhson1085@gmail.com> (https://sonnguyen.ws)",
+  "license": "MIT"
+}
