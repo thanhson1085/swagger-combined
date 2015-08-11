@@ -1,3 +1,7 @@
+[![Package Quality](http://npm.packagequality.com/badge/swagger-combined.png)](http://packagequality.com/#?package=swagger-combined)
+
+[![NPM](https://nodei.co/npm/swagger-combined.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/swagger-combined/)
+
 If you are building a microservice system and using Swagger. 
 
 This packet is able to help you combine all swagger documents to only one document.
