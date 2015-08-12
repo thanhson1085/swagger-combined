@@ -16,8 +16,9 @@ npm install swagger-combined
 ```
 ### Configuration
 cp -R node_modules/swagger-combined/config .
-// change config/default.json to match your swagger links
 ### Run
+Change config/default.json to match your swagger links
+
 ```
 node node_modules/swagger-combined/app.js
 ```
