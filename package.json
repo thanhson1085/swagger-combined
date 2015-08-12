@@ -1,6 +1,6 @@
 {
   "name": "swagger-combined",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Combines Swagger documents",
   "main": "app.js",
   "repository": {
