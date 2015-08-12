@@ -10,15 +10,21 @@ For example, you have the swagger documents at http://service1/docs, http://serv
 
 This will help you combine all links above to only one link http://service/docs
 
-### Installation & Run
+### Installation
 ```
 npm install swagger-combined
+```
+### Configuration
 cp -R node_modules/swagger-combined/config .
-// change config/default.json
+// change config/default.json to match your swagger links
+### Run
+```
 node node_modules/swagger-combined/app.js
 ```
-
 Please make note that you changed config/default.json to match all swagger document links you have
+
+### Test
+In the default, swagger-combined run on port 3000. After runing the application successfully, you can use Swagger-UI for test.
 
 ### License (MIT)
 Copyright (c) 2015 Nguyen Sy Thanh Son <thanhson1085@gmail.com>
