@@ -18,7 +18,7 @@
     "swagger-combined": "bin/run.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "Not yet ready for test && exit 0"
   },
   "keywords": [
     "swagger",
