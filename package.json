@@ -15,7 +15,7 @@
   },
   "devDependencies": {},
   "bin": {
-    "swagger-combined": "app.js"
+    "swagger-combined": "bin/run.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

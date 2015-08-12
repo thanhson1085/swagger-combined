@@ -41,7 +41,8 @@ app.get('/', function(req, res) {
 });
 
 // Start web server at port 3000
-var server = app.listen(3000, function () {
+var port = config.get("port");
+var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log('Combines swaggers http://%s:%s', host, port);

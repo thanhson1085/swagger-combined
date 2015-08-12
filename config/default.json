@@ -1,4 +1,5 @@
 {
     "list_url": [ "http://192.168.1.191:7007/docs", "http://192.168.1.191:7010/docs" ],
-    "info": { "title": "Example API", "version": "1.0" }
+    "info": { "title": "Example API", "version": "1.0" },
+    "port": 3000
 }
