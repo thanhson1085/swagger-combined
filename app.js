@@ -1,10 +1,10 @@
-var http = require('http');
 var config = require('config');
 var request = require('request');
 var q = require('q');
 var express = require('express');
 var app = express();
 
+// cross origin
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
