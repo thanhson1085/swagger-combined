@@ -15,10 +15,12 @@ This will help you combine all links above to only one link http://service/docs
 npm install swagger-combined
 ```
 ### Configuration
+```
 cp -R node_modules/swagger-combined/config .
+```
+
 ### Run
 Change config/default.json to match your swagger links
-
 ```
 node node_modules/swagger-combined/app.js
 ```

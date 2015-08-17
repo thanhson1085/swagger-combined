@@ -1,6 +1,6 @@
 {
   "name": "swagger-combined",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Combines Swagger documents",
   "main": "app.js",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "devDependencies": {},
   "bin": {
-    "swagger-combined": "bin/run.js"
+    "swagger-combined": "run.js"
   },
   "scripts": {
     "test": "echo \"Not yet ready for test\" && exit 0"
