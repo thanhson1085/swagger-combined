@@ -1,4 +1,5 @@
 var config = require('config');
+var httpProxy = require('http-proxy');
 var request = require('request');
 var q = require('q');
 var express = require('express');
@@ -39,7 +40,15 @@ app.get('/docs', function(req, res) {
         res.send(JSON.stringify(ret));
     }); 
 });
-app.set('views', './node_modules/swagger-ui/dist')
+var proxy = httpProxy.createProxyServer();
+
+app.get("/api/*", function(req, res){ 
+    proxy.web(req, res, { target: 'http://192.168.1.191:7007/' });
+});
+app.post("/api/*", function(req, res){ 
+    proxy.web(req, res, { target: 'http://192.168.1.191:7007/' });
+});
+
 
 // redirect page
 app.use('/', express.static('./template'));
@@ -60,7 +69,7 @@ var getApis = function(urls){
     var the_promises = [];
     urls.forEach(function(url){
         var def = q.defer();
-        request(url, function (error, response, body) {
+        request(url.docs, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 body = JSON.parse(body);
                 def.resolve(body)

@@ -1,5 +1,7 @@
 {
-    "list_url": [ "http://petstore.swagger.io/v2/swagger.json" ],
+    "list_url": [ 
+        {"docs": "http://petstore.swagger.io/v2/swagger.json", "base_path": "http://petstore.swagger.io/"}
+    ],
     "info": { "title": "Example API", "version": "1.0" },
     "port": 3000
 }
