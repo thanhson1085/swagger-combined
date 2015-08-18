@@ -27,7 +27,7 @@ node node_modules/swagger-combined/app.js
 Please make note that you changed config/default.json to match all swagger document links you have
 
 ### Test
-In the default, swagger-combined run on port 3000. After runing the application successfully, you can use Swagger-UI for test.
+In the default, swagger-combined run on port 3000 and included swagger-ui. So you just run http://localhost:3000 to see everything you need
 
 ### License (MIT)
 Copyright (c) 2015 Nguyen Sy Thanh Son <thanhson1085@gmail.com>

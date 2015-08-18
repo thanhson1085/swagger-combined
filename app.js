@@ -16,7 +16,7 @@ var listUrl = config.get("list_url");
 
 // general infor of your application
 var info = config.get("info");
-app.get('/', function(req, res) {
+app.get('/docs', function(req, res) {
     getApis(listUrl).then(function(data){
         var ret = data.reduce(function(a, i){
             if (!a) {
@@ -39,6 +39,13 @@ app.get('/', function(req, res) {
         res.send(JSON.stringify(ret));
     }); 
 });
+app.set('views', './node_modules/swagger-ui/dist')
+
+// redirect page
+app.use('/', express.static('./template'));
+
+// addon swagger page
+app.use('/s', express.static('./node_modules/swagger-ui/dist'));
 
 // Start web server at port 3000
 var port = config.get("port");
