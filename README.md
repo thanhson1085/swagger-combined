@@ -15,9 +15,27 @@ This will help you combine all links above to only one link http://service/docs
 npm install swagger-combined
 ```
 ### Configuration
+Create sample configuration file:
 ```
 cp -R node_modules/swagger-combined/config .
 ```
+And see config/default.json as below:
+```
+{
+    "list_url": [
+        {
+            "docs": "http://petstore.swagger.io/v2/swagger.json",
+            "base_path": "http://petstore.swagger.io/",
+            "route_match": "/v2*"
+        }
+    ],
+    "info": { "title": "Example API", "version": "1.0" },
+    "port": 3000
+}
+```
+- docs: swagger document links
+- base_path: Proxy Target
+- route_match: Routes for proxy
 
 ### Run
 Change config/default.json to match your swagger links

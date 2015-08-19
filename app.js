@@ -42,11 +42,29 @@ app.get('/docs', function(req, res) {
 });
 var proxy = httpProxy.createProxyServer();
 
-app.get("/api/*", function(req, res){ 
-    proxy.web(req, res, { target: 'http://192.168.1.191:7007/' });
-});
-app.post("/api/*", function(req, res){ 
-    proxy.web(req, res, { target: 'http://192.168.1.191:7007/' });
+listUrl.forEach(function(url){
+    url.route_match.forEach(function(r){
+        // GET proxy
+        app.get(r, function(req, res){ 
+            proxy.web(req, res, { target: url.base_path });
+        });
+        // POST proxy
+        app.post(r, function(req, res){ 
+            proxy.web(req, res, { target: url.base_path });
+        });
+        // PUT proxy
+        app.put(r, function(req, res){ 
+            proxy.web(req, res, { target: url.base_path });
+        });
+        // DELETE proxy
+        app.delete(r, function(req, res){ 
+            proxy.web(req, res, { target: url.base_path });
+        });
+        // OPTIONS proxy
+        app.options(r, function(req, res){ 
+            proxy.web(req, res, { target: url.base_path });
+        });
+    });
 });
 
 
