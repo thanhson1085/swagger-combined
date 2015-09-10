@@ -3,7 +3,7 @@
         {
             "docs": "http://petstore.swagger.io/v2/swagger.json", 
             "base_path": "http://petstore.swagger.io/",
-            "route_match": "/v2*"
+            "route_match": ["/v2*"]
         }
     ],
     "info": { "title": "Example API", "version": "1.0" },
