@@ -10,6 +10,11 @@ For example, you have the swagger documents at http://service1/docs, http://serv
 
 This will help you combine all links above to only one link http://service/docs
 
+### Installation & Run from Docker
+```
+docker run -it -p 3000:80 thanhson1085/swagger-combined
+```
+
 ### Installation via NPM
 ```
 npm install swagger-combined
