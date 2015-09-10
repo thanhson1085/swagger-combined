@@ -1,0 +1,63 @@
+{
+  "name": "swagger-combined",
+  "version": "1.2.0",
+  "description": "Combines Swagger documents",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thanhson1085/swagger-combined.git"
+  },
+  "dependencies": {
+    "config": "^1.15.0",
+    "express": "^4.13.3",
+    "http-proxy": "^1.11.1",
+    "q": "^1.4.1",
+    "request": "^2.60.0",
+    "swagger-ui": "^2.1.1"
+  },
+  "devDependencies": {},
+  "bin": {
+    "swagger-combined": "run.js"
+  },
+  "scripts": {
+    "test": "echo \"Not yet ready for test\" && exit 0"
+  },
+  "keywords": [
+    "swagger",
+    "swagger-ui",
+    "microservices"
+  ],
+  "author": {
+    "name": "Nguyen Sy Thanh Son",
+    "email": "thanhson1085@gmail.com",
+    "url": "https://sonnguyen.ws"
+  },
+  "license": "MIT",
+  "gitHead": "39d7e324dad2f540f569aaab2188767bae08f50f",
+  "bugs": {
+    "url": "https://github.com/thanhson1085/swagger-combined/issues"
+  },
+  "homepage": "https://github.com/thanhson1085/swagger-combined#readme",
+  "_id": "swagger-combined@1.2.0",
+  "_shasum": "54829d56373b9655fa31cbc3f979be18962c6b37",
+  "_from": "swagger-combined@",
+  "_npmVersion": "2.13.0",
+  "_nodeVersion": "0.10.37",
+  "_npmUser": {
+    "name": "thanhson1085",
+    "email": "thanhson1085@gmail.com"
+  },
+  "dist": {
+    "shasum": "54829d56373b9655fa31cbc3f979be18962c6b37",
+    "tarball": "http://registry.npmjs.org/swagger-combined/-/swagger-combined-1.2.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "thanhson1085",
+      "email": "thanhson1085@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/swagger-combined/-/swagger-combined-1.2.0.tgz",
+  "readme": "ERROR: No README data found!"
+}
