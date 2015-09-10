@@ -26,7 +26,7 @@ COPY ./package.json /build/package.json
 
 RUN npm install
 
-ENV APP_NAME=swagger_combined
+ENV APP_NAME=swagger-combined
 COPY ./docker/${APP_NAME}.nginx /etc/nginx/sites-available/default
 
 ADD . /build

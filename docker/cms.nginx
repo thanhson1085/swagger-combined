@@ -1,7 +1,0 @@
-server {
-        listen 80;
-        listen [::]:80;
-
-        root /build/dist/;
-        index index.html;
-}
