@@ -15,7 +15,8 @@ This will help you combine all links above to only one link http://service/docs
 npm install swagger-combined
 ```
 
-*Configuration*
+**Configuration:**
+
 Create sample configuration file:
 ```
 cp -R node_modules/swagger-combined/config .
@@ -38,7 +39,8 @@ And see config/default.json as below:
 - base_path: Proxy Target
 - route_match: Routes for proxy
 
-*Run*
+**And run:**
+
 Change config/default.json to match your swagger links
 ```
 node node_modules/swagger-combined/app.js
@@ -50,14 +52,14 @@ Please make note that you changed config/default.json to match all swagger docum
 git clone https://github.com/thanhson1085/swagger-combined.git
 ```
 
-*Run*
+**And run:**
 ```
 cd swagger-combined
 node app.js
 ```
 
 ### Test
-In the default, swagger-combined run on port 3000 and included swagger-ui. So you just run http://localhost:3000 to see everything you need
+In the default, swagger-combined run on port 3000 and included swagger-ui. So you just run http://localhost:3000 to see everything you need. Or you can see swagger api at http://localhost:3000/docs
 
 ### License (MIT)
 Copyright (c) 2015 Nguyen Sy Thanh Son <thanhson1085@gmail.com>
