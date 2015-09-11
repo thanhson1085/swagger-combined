@@ -20,8 +20,6 @@ docker run -it -p 3000:80 thanhson1085/swagger-combined
 npm install swagger-combined
 ```
 
-**Configuration:**
-
 Create sample configuration file:
 ```
 cp -R node_modules/swagger-combined/config .
@@ -44,9 +42,8 @@ And see config/default.json as below:
 - base_path: Proxy Target
 - route_match: Routes for proxy
 
-**And run:**
 
-Change config/default.json to match your swagger links
+Change config/default.json to match your swagger links and run:
 ```
 node node_modules/swagger-combined/app.js
 ```
@@ -56,8 +53,7 @@ Please make note that you changed config/default.json to match all swagger docum
 ```
 git clone https://github.com/thanhson1085/swagger-combined.git
 ```
-
-**And run:**
+Run:
 ```
 cd swagger-combined
 node app.js
