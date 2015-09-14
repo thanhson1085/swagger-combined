@@ -1,6 +1,6 @@
 {
   "name": "swagger-combined",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Combines Swagger documents",
   "main": "app.js",
   "repository": {
@@ -38,15 +38,6 @@
     "url": "https://github.com/thanhson1085/swagger-combined/issues"
   },
   "homepage": "https://github.com/thanhson1085/swagger-combined#readme",
-  "_id": "swagger-combined@1.2.0",
-  "_shasum": "54829d56373b9655fa31cbc3f979be18962c6b37",
-  "_from": "swagger-combined@",
-  "_npmVersion": "2.13.0",
-  "_nodeVersion": "0.10.37",
-  "_npmUser": {
-    "name": "thanhson1085",
-    "email": "thanhson1085@gmail.com"
-  },
   "dist": {
     "shasum": "54829d56373b9655fa31cbc3f979be18962c6b37",
     "tarball": "http://registry.npmjs.org/swagger-combined/-/swagger-combined-1.2.0.tgz"
@@ -57,7 +48,5 @@
       "email": "thanhson1085@gmail.com"
     }
   ],
-  "directories": {},
-  "_resolved": "https://registry.npmjs.org/swagger-combined/-/swagger-combined-1.2.0.tgz",
-  "readme": "ERROR: No README data found!"
+  "directories": {}
 }
