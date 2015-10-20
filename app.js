@@ -90,7 +90,7 @@ var getApis = function(urls){
         request(url.docs, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 body = JSON.parse(body);
-                def.resolve(body)
+                def.resolve(body);
             }
         });
         the_promises.push(def.promise);
