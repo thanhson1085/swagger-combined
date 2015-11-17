@@ -6,9 +6,9 @@ If you are building a microservice system and using Swagger.
 
 This packet is able to help you combine all swagger documents to only one document.
 
-For example, you have the swagger documents at http://service1/docs, http://service2/docs
+For example, you have the swagger documents at `http://service1/docs`, `http://service2/docs`
 
-This will help you combine all links above to only one link http://service/docs
+This will help you combine all links above to only one link `http://service/docs`
 
 ### Installation & Run from Docker
 ```
@@ -47,7 +47,7 @@ Change config/default.json to match your swagger links and run:
 ```
 node node_modules/swagger-combined/app.js
 ```
-Please make note that you changed config/default.json to match all swagger document links you have
+Please make note that you changed `config/default.json` to match all swagger document links you have
 
 ### Installation & Run from Source Code
 ```
@@ -60,7 +60,7 @@ node app.js
 ```
 
 ### Test
-In the default, swagger-combined run on port 3000 and included swagger-ui. So you just run http://localhost:3000 to see everything you need. Or you can see swagger api at http://localhost:3000/docs
+In the default, swagger-combined run on port 3000 and included swagger-ui. So you just run `http://localhost:3000` to see everything you need. Or you can see swagger api at `http://localhost:3000/docs`
 
 ### License (MIT)
 Copyright (c) 2015 Nguyen Sy Thanh Son <thanhson1085@gmail.com>
