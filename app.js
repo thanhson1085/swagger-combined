@@ -21,6 +21,10 @@ var listUrl = config.get("list_url");
 // general infor of your application
 var info = config.get("info");
 app.get('/docs', function(req, res) {
+    var schemes = [ req.protocol ];
+    if (config.has('schemes')) {
+        schemes = config.get('schemes', false);
+    }
     getApis(listUrl).then(function(data){
         var ret = data.reduce(function(a, i){
             if (!a) {
@@ -41,7 +45,7 @@ app.get('/docs', function(req, res) {
         ret.info = info;
         ret.host = null;
         ret.basePath = null;
-        ret.schemes = [ req.protocol ];
+        ret.schemes = schemes;
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(ret));
     }); 
