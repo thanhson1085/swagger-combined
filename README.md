@@ -62,5 +62,28 @@ node app.js
 ### Test
 In the default, swagger-combined run on port 3000 and included swagger-ui. So you just run `http://localhost:3000` to see everything you need. Or you can see swagger api at `http://localhost:3000/docs`
 
+### Example & Demo
+With config/default.json:
+```
+{
+    "list_url": [
+        {
+            "docs": "http://petstore.swagger.io/v2/swagger.json",
+            "base_path": "http://petstore.swagger.io/v2",
+            "route_match": ["/user*", "/pet*", "/store*"]
+        },
+        {
+            "docs": "https://angular-admin-seed.sonnguyen.ws/docs",
+            "base_path": "https://angular-admin-seed.sonnguyen.ws",
+            "route_match": ["/api/v1*"]
+        }
+    ],
+    "info": { "title": "Example API", "version": "1.0" },
+    "port": 3000
+}
+
+```
+See [Demo](https://swagger-combined.sonnguyen.ws)
+
 ### License (MIT)
 Copyright (c) 2015 Nguyen Sy Thanh Son <thanhson1085@gmail.com>
