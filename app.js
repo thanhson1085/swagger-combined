@@ -41,7 +41,6 @@ app.get('/docs', function(req, res) {
         ret.info = info;
         ret.host = null;
         ret.basePath = null;
-        ret.schemes = ['https', 'http'];
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(ret));
     }); 
