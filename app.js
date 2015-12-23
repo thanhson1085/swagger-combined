@@ -4,6 +4,9 @@ var request = require('request');
 var q = require('q');
 var express = require('express');
 var app = express();
+var https = require('https');
+var http = require('http');
+var url = require('url');
 
 // cross origin
 app.use(function(req, res, next) {
@@ -36,6 +39,8 @@ app.get('/docs', function(req, res) {
             return a;
         }, false);
         ret.info = info;
+        ret.host = null;
+        ret.basePath = null;
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(ret));
     }); 
@@ -46,26 +51,46 @@ listUrl.forEach(function(url){
     url.route_match.forEach(function(r){
         // GET proxy
         app.get(r, function(req, res){ 
-            proxy.web(req, res, { target: url.base_path });
+            doForward(req, res, url.base_path, proxy);
         });
         // POST proxy
         app.post(r, function(req, res){ 
-            proxy.web(req, res, { target: url.base_path });
+            doForward(req, res, url.base_path, proxy);
         });
         // PUT proxy
         app.put(r, function(req, res){ 
-            proxy.web(req, res, { target: url.base_path });
+            doForward(req, res, url.base_path, proxy);
         });
         // DELETE proxy
         app.delete(r, function(req, res){ 
-            proxy.web(req, res, { target: url.base_path });
+            doForward(req, res, url.base_path, proxy);
         });
         // OPTIONS proxy
         app.options(r, function(req, res){ 
-            proxy.web(req, res, { target: url.base_path });
+            doForward(req, res, url.base_path, proxy);
         });
     });
 });
+
+var doForward = function(req, res, baseUrl, p) {
+    if (url.parse(baseUrl).protocol === 'https:') {
+        p.web(req, res, { 
+            target: baseUrl, 
+            agent : https.globalAgent ,
+            headers: {
+                host: url.parse(baseUrl).hostname
+            }
+        });
+    } else {
+        p.web(req, res, { 
+            target: baseUrl,
+            agent : http.globalAgent ,
+            headers: {
+                host: url.parse(baseUrl).hostname
+            }
+        });
+    }
+}
 
 
 // redirect page

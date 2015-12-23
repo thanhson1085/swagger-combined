@@ -30,8 +30,8 @@ And see config/default.json as below:
     "list_url": [
         {
             "docs": "http://petstore.swagger.io/v2/swagger.json",
-            "base_path": "http://petstore.swagger.io/",
-            "route_match": ["/v2*"]
+            "base_path": "http://petstore.swagger.io/v2",
+            "route_match": ["/user*", "/pet*", "/store*"]
         }
     ],
     "info": { "title": "Example API", "version": "1.0" },
