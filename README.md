@@ -12,7 +12,7 @@ This will help you combine all links above to only one link `http://service/docs
 
 ### Installation & Run from Docker
 ```
-docker run -it -p 3000:80 thanhson1085/swagger-combined
+docker run -d -p 3000:3000 thanhson1085/swagger-combined
 ```
 
 ### Installation via NPM
