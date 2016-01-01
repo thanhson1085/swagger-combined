@@ -1,9 +1,14 @@
 {
-    "list_url": [ 
+    "list_url": [
         {
             "docs": "http://petstore.swagger.io/v2/swagger.json",
             "base_path": "http://petstore.swagger.io/v2",
             "route_match": ["/user*", "/pet*", "/store*"]
+        },
+        {
+            "docs": "https://angular-admin-seed.sonnguyen.ws/docs",
+            "base_path": "https://angular-admin-seed.sonnguyen.ws",
+            "route_match": ["/api/v1*"]
         }
     ],
     "info": { "title": "Example API", "version": "1.0" },

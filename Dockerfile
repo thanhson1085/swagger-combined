@@ -1,14 +1,16 @@
 FROM ubuntu:14.04
-MAINTAINER Nguyen Sy Thanh Son <sonnst@sigma-solutions.eu>
+MAINTAINER Nguyen Sy Thanh Son <thanhson1085@gmail.com>
 
 RUN apt-get update && \
-    apt-get install -y supervisor build-essential wget
-RUN apt-get install -y python-pip python-dev nginx
+    apt-get install -y \
+    build-essential wget \
+    python-pip python-dev
+
 RUN \
     cd /tmp && \
-    wget http://nodejs.org/dist/node-latest.tar.gz && \
-    tar xvzf node-latest.tar.gz && \
-    rm -f node-latest.tar.gz && \
+    wget http://nodejs.org/dist/v4.2.2/node-v4.2.2.tar.gz && \
+    tar xvzf node-v4.2.2.tar.gz && \
+    rm -f node-v4.2.2.tar.gz && \
     cd node-v* && \
     ./configure && \
     CXX="g++ -Wno-unused-local-typedefs" make && \
@@ -25,13 +27,12 @@ WORKDIR /build
 COPY ./package.json /build/package.json
 
 RUN npm install
-
-ENV APP_NAME=swagger-combined
-COPY ./docker/${APP_NAME}.nginx /etc/nginx/sites-available/default
+RUN npm install -g pm2
 
 ADD . /build
 
-EXPOSE 80:80
+# run app
+COPY docker/entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
-COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-CMD ["/usr/bin/supervisord"]
+ENTRYPOINT ["/entrypoint.sh"]
