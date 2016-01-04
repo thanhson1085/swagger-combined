@@ -1,38 +1,27 @@
-FROM ubuntu:14.04
+FROM alpine:3.2
 MAINTAINER Nguyen Sy Thanh Son <thanhson1085@gmail.com>
 
-RUN apt-get update && \
-    apt-get install -y \
-    build-essential wget \
-    python-pip python-dev
+ENV NODE_VERSION=v4.2.2 NPM_VERSION=2.14.2
 
-RUN \
-    cd /tmp && \
-    wget http://nodejs.org/dist/v4.2.2/node-v4.2.2.tar.gz && \
-    tar xvzf node-v4.2.2.tar.gz && \
-    rm -f node-v4.2.2.tar.gz && \
-    cd node-v* && \
-    ./configure && \
-    CXX="g++ -Wno-unused-local-typedefs" make && \
-    CXX="g++ -Wno-unused-local-typedefs" make install
-RUN \
-    cd /tmp && \
-    rm -rf /tmp/node-v* && \
-    npm install -g npm && \
-    printf '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
-
-RUN pip install supervisor-stdout
+RUN apk add --update git curl make gcc g++ python linux-headers libgcc libstdc++ binutils-gold && \
+    curl -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}.tar.gz | tar -xz && \
+    cd /node-${NODE_VERSION} && \
+    ./configure --prefix=/usr --without-snapshot --fully-static && \
+    make -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
+    make install && \
+    cd / && \
+    npm install -g npm@${NPM_VERSION} && \
+    apk del gcc g++ linux-headers libgcc libstdc++ binutils-gold && \
+    rm -rf /etc/ssl /node-${NODE_VERSION} /usr/include \
+    /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp \
+    /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
 
 WORKDIR /build
 COPY ./package.json /build/package.json
 
 RUN npm install
-RUN npm install -g pm2
 
 ADD . /build
 
 # run app
-COPY docker/entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["node", "app.js"]
