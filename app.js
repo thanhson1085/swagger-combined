@@ -78,22 +78,26 @@ listUrl.forEach(function(url){
 });
 
 var doForward = function(req, res, baseUrl, p) {
-    if (url.parse(baseUrl).protocol === 'https:') {
-        p.web(req, res, { 
-            target: baseUrl, 
-            agent : https.globalAgent ,
-            headers: {
-                host: url.parse(baseUrl).hostname
-            }
-        });
-    } else {
-        p.web(req, res, { 
-            target: baseUrl,
-            agent : http.globalAgent ,
-            headers: {
-                host: url.parse(baseUrl).hostname
-            }
-        });
+    try {
+        if (url.parse(baseUrl).protocol === 'https:') {
+            p.web(req, res, { 
+                target: baseUrl, 
+                agent : https.globalAgent ,
+                headers: {
+                    host: url.parse(baseUrl).hostname
+                }
+            });
+        } else {
+            p.web(req, res, { 
+                target: baseUrl,
+                agent : http.globalAgent ,
+                headers: {
+                    host: url.parse(baseUrl).hostname
+                }
+            });
+        }
+    } catch (e) {
+        console.log(e);
     }
 }
 
