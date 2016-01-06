@@ -79,6 +79,7 @@ listUrl.forEach(function(url){
 
 var doForward = function(req, res, baseUrl, p) {
     try {
+        console.log('doForward %s', baseUrl);
         if (url.parse(baseUrl).protocol === 'https:') {
             p.web(req, res, { 
                 target: baseUrl, 
