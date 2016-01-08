@@ -10,11 +10,6 @@ For example, you have the swagger documents at `http://service1/docs`, `http://s
 
 This will help you combine all links above to only one link `http://service/docs`
 
-### Installation & Run from Docker
-```
-docker run -d -p 3000:3000 thanhson1085/swagger-combined
-```
-
 ### Installation via NPM
 ```
 npm install swagger-combined
@@ -58,7 +53,11 @@ Run:
 cd swagger-combined
 node app.js
 ```
-
+### Installation & Run from Docker
+Create the configuration file config/default.json and mount it to the container:
+```
+docker run -d -p 3000:3000 -v ./config/default.json:/build/config/local.json thanhson1085/swagger-combined
+```
 ### Test
 In the default, swagger-combined run on port 3000 and included swagger-ui. So you just run `http://localhost:3000` to see everything you need. Or you can see swagger api at `http://localhost:3000/docs`
 
