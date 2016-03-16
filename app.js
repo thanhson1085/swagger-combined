@@ -107,7 +107,7 @@ var doForward = function(req, res, baseUrl, p) {
 app.use('/', express.static(__dirname + '/template'));
 
 // addon swagger page
-app.use('/s', express.static(__dirname + '/node_modules/swagger-ui/dist'));
+app.use('/s', express.static(__dirname + '/../swagger-ui/dist'));
 
 // Start web server at port 3000
 var port = config.get("port");
