@@ -51,6 +51,7 @@ git clone https://github.com/thanhson1085/swagger-combined.git
 Run:
 ```
 cd swagger-combined
+npm install
 node app.js
 ```
 ### Installation & Run from Docker
