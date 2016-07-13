@@ -28,22 +28,26 @@ app.get('/docs', function (req, res) {
     if (config.has('schemes')) {
         schemes = config.get('schemes');
     }
-    q.all(_.map(listUrl, function(url) {
-        return getApi(url.docs).then(function(data) {
-            var route_filter_regex = _.map(url.route_filter, function(rf) { return new RegExp(rf); });
-            var filteredKeys = _.filter(Object.keys(data.paths), function(key) {
-                return _.every(route_filter_regex, function(rgx) {
+    q.all(_.map(listUrl, function (url) {
+        return getApi(url.docs).then(function (data) {
+            var route_filter_regex = _.map(url.route_filter, function (rf) {
+                return new RegExp(rf);
+            });
+            var filteredKeys = _.filter(Object.keys(data.paths), function (key) {
+                return _.every(route_filter_regex, function (rgx) {
                     return !key.match(rgx);
                 });
             });
             var filtered = {};
-            _.each(filteredKeys, function(key) { filtered[key] = data.paths[key]; });
+            _.each(filteredKeys, function (key) {
+                filtered[key] = data.paths[key];
+            });
             data.paths = filtered;
             return data;
         });
-    })).then(function(all) {
-        var ret = _.reduce(all, function(acc, n) {
-            _.each(transferableFields, function(key) {
+    })).then(function (all) {
+        var ret = _.reduce(all, function (acc, n) {
+            _.each(transferableFields, function (key) {
                 if (!acc[key] && n[key]) acc[key] = {};
                 _.extend(acc[key], n[key]);
             });
@@ -57,7 +61,7 @@ app.get('/docs', function (req, res) {
             consumes: null,
             produces: null
         });
-        
+
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(ret));
     });
@@ -129,7 +133,7 @@ var server = app.listen(port, function () {
     console.log('Combines swaggers http://%s:%s', host, port);
 });
 
-var getApi = function(url) {
+var getApi = function (url) {
     var def = q.defer();
     if (url.substring(0, 7).toUpperCase() === "FILE://") getApiFile(url.substring(7), def);
     else getApiHttp(url, def);
@@ -152,7 +156,7 @@ var getApiHttp = function (url, def) {
 // get swagger json data from file
 var getApiFile = function (path, def) {
     console.log("detected filepath: " + path);
-    fs.readFile(path, 'utf8', function(err, js) {
+    fs.readFile(path, 'utf8', function (err, js) {
         if (err) {
             if (err) def.reject(err);
         } else {
