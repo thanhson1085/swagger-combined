@@ -20,49 +20,52 @@ app.use(function (req, res, next) {
 // list all swagger document urls
 var listUrl = config.get("list_url");
 
-// general infor of your application
+// general info of your application
 var info = config.get("info");
 app.get('/docs', function (req, res) {
     var schemes = [req.protocol];
     if (config.has('schemes')) {
         schemes = config.get('schemes');
     }
-    q.all(listUrl.map(function(url) {
+    q.all(_.map(listUrl, function(url) {
         return getApi(url.docs).then(function(data) {
-            var route_filter_regex = url.route_filter.map(function(rf) { return new RegExp(rf); });
+            var route_filter_regex = _.map(url.route_filter, function(rf) { return new RegExp(rf); });
             var filteredKeys = _.filter(Object.keys(data.paths), function(key) {
-                return _.some(route_filter_regex, function(rgx) {
-                    return key.match(rgx);
+                return _.every(route_filter_regex, function(rgx) {
+                    return !key.match(rgx);
                 });
             });
             var filtered = {};
-            filteredKeys.forEach(function(key) { filtered[key] = data.paths[key]; });
+            _.each(filteredKeys, function(key) { filtered[key] = data.paths[key]; });
             data.paths = filtered;
             return data;
         });
     })).then(function(all) {
-        var ret = all.reduce(function (a, i) {
-            if (!a) {
-                a = i;
-            }
-            else {
-                // combines paths
-                for (key in i.paths) {
-                    if (i.paths.hasOwnProperty(key))
-                        a.paths[key] = i.paths[key];
-                }
-                // combines definitions
-                for (key in i.definitions) {
-                    if (i.definitions.hasOwnProperty(key))
-                        a.definitions[key] = i.definitions[key];
-                }
-            }
-            return a;
-        }, false);
-        ret.info = info;
-        ret.host = null;
-        ret.basePath = null;
-        ret.schemes = schemes;
+        var ret = _.reduce(all, function(acc, n) {
+            var transferable = _.map(["paths", "definitions", "parameters", "responses", "securityDefinitions", "security", "tags", "externalDocs"], function(t) {
+                return {
+                    key: t,
+                    value: n[t]
+                };
+            });
+            var transferableFiltered = _.filter(transferable, function(t) { return t.value; });
+            _.each(transferableFiltered, function(t) {
+                if (!acc[t.key]) acc[t.key] = {};
+                _.each(Object.keys(t.value), function(key) {
+                    acc[t.key][key] = n[t.key][key];
+                })
+            });
+            return acc;
+        }, {
+            swagger: "2.0",
+            info: info,
+            host: null,
+            basePath: null,
+            schemes: schemes,
+            consumes: null,
+            produces: null
+        });
+        
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(ret));
     });
@@ -154,6 +157,7 @@ var getApiHttp = function (url, def) {
     });
 };
 
+// get swagger json data from file
 var getApiFile = function (path, def) {
     console.log("detected filepath: " + path);
     fs.readFile(path, 'utf8', function(err, js) {
