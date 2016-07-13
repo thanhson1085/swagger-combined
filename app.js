@@ -22,6 +22,7 @@ var listUrl = config.get("list_url");
 
 // general info of your application
 var info = config.get("info");
+var transferableFields = ["paths", "definitions", "parameters", "responses", "securityDefinitions", "security", "tags", "externalDocs"];
 app.get('/docs', function (req, res) {
     var schemes = [req.protocol];
     if (config.has('schemes')) {
@@ -42,18 +43,9 @@ app.get('/docs', function (req, res) {
         });
     })).then(function(all) {
         var ret = _.reduce(all, function(acc, n) {
-            var transferable = _.map(["paths", "definitions", "parameters", "responses", "securityDefinitions", "security", "tags", "externalDocs"], function(t) {
-                return {
-                    key: t,
-                    value: n[t]
-                };
-            });
-            var transferableFiltered = _.filter(transferable, function(t) { return t.value; });
-            _.each(transferableFiltered, function(t) {
-                if (!acc[t.key]) acc[t.key] = {};
-                _.each(Object.keys(t.value), function(key) {
-                    acc[t.key][key] = n[t.key][key];
-                })
+            _.each(transferableFields, function(key) {
+                if (!acc[key] && n[key]) acc[key] = {};
+                _.extend(acc[key], n[key]);
             });
             return acc;
         }, {
