@@ -26,16 +26,18 @@ And see config/default.json as below:
         {
             "docs": "http://petstore.swagger.io/v2/swagger.json",
             "base_path": "http://petstore.swagger.io/v2",
-            "route_match": ["/user*", "/pet*", "/store*"]
+            "route_match": ["/user*", "/pet*"]
+            "route_filter": ["/store*"]
         }
     ],
     "info": { "title": "Example API", "version": "1.0" },
     "port": 3000
 }
 ```
-- docs: swagger document links
+- docs: swagger document links (can use `file://` format)
 - base_path: Proxy Target
 - route_match: Routes for proxy
+- route_filter: prefixes to exclude
 
 
 Change config/default.json to match your swagger links and run:
