@@ -54,7 +54,7 @@ Run:
 ```
 cd swagger-combined
 npm install
-node app.js
+node routes/app.js
 ```
 ### Installation & Run from Docker
 Create the configuration file config/default.json and mount it to the container:
@@ -86,6 +86,12 @@ With config/default.json:
 
 ```
 See [Demo](https://swagger-combined.sonnguyen.ws)
+
+### Script
+You can use the script at bin/swagger-combined.js to generate the same results as `/docs` to stdout
+```
+node bin/swagger-combined.js
+``` 
 
 ### License (MIT)
 Copyright (c) 2015 Nguyen Sy Thanh Son <thanhson1085@gmail.com>
