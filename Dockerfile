@@ -24,4 +24,4 @@ RUN npm install
 ADD . /build
 
 # run app
-CMD ["node", "app.js"]
+CMD ["node", "routes/app.js"]
