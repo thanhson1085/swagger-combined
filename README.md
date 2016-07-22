@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/thanhson1085/swagger-combined.svg)](https://travis-ci.org/thanhson1085/swagger-combined)
-
+[![Docker Pulls](https://img.shields.io/docker/pulls/thanhson1085/swagger-combined.svg)](https://hub.docker.com/r/thanhson1085/swagger-combined/)
 [![NPM](https://nodei.co/npm/swagger-combined.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/swagger-combined/)
 
 If you are building a microservice system and using Swagger. 
