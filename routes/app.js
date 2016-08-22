@@ -69,7 +69,7 @@ var doForward = function doForward(req, res, baseUrl, p) {
   }
 };
 var proxy = _httpProxy2.default.createProxyServer();
-var verbs = [app.get, app.post, app.put, app.delete, app.options];
+var verbs = [app.get, app.post, app.put, app.patch, app.delete, app.options];
 _underscore2.default.each(_swagger.listUrl, function (url) {
   return _underscore2.default.each(verbs, function (verb) {
     return _underscore2.default.each(url.route_match, function (r) {
