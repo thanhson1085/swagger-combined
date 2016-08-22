@@ -41,7 +41,7 @@ const doForward = function (req, res, baseUrl, p) {
   }
 };
 const proxy = httpProxy.createProxyServer();
-const verbs = [app.get, app.post, app.put, app.delete, app.options];
+const verbs = [app.get, app.post, app.put, app.patch, app.delete, app.options];
 _.each(listUrl, url =>
   _.each(verbs, verb =>
     _.each(url.route_match, r =>
