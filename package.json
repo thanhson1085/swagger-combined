@@ -1,6 +1,6 @@
 {
   "name": "swagger-combined",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Combines Swagger documents",
   "main": "routes/app.js",
   "repository": {
@@ -45,15 +45,10 @@
     "url": "https://sonnguyen.ws"
   },
   "license": "MIT",
-  "gitHead": "39d7e324dad2f540f569aaab2188767bae08f50f",
   "bugs": {
     "url": "https://github.com/thanhson1085/swagger-combined/issues"
   },
   "homepage": "https://github.com/thanhson1085/swagger-combined#readme",
-  "dist": {
-    "shasum": "54829d56373b9655fa31cbc3f979be18962c6b37",
-    "tarball": "http://registry.npmjs.org/swagger-combined/-/swagger-combined-1.2.0.tgz"
-  },
   "maintainers": [
     {
       "name": "thanhson1085",
