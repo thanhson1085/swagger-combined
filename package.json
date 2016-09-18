@@ -30,7 +30,7 @@
     "gulp-sourcemaps": "1.6.0",
     "lazypipe": "^1.0.1"
   },
-  "bin": "./bin/swagger-combined",
+  "bin": "./bin/swagger-combined.js",
   "scripts": {
     "test": "echo \"Not yet ready for test\" && exit 0"
   },
