@@ -32,8 +32,8 @@ var transferableFields = ['paths', 'definitions', 'parameters', 'responses', 'se
 var checkConfig = function checkConfig() {
   return new Promise(function (resolve, reject) {
     if (listUrl && info && _underscore2.default.every(listUrl, function (url) {
-      return url.docs && url.base_path && url.route_match && url.route_filter;
-    })) resolve();else reject('config is not set up correctly');
+          return url.docs && url.base_path && url.route_match && url.route_filter;
+        })) resolve();else reject('config is not set up correctly');
   });
 };
 
@@ -77,6 +77,12 @@ var genDocs = function genDocs(schemes, suppre) {
         _underscore2.default.each(filteredKeys, function (key) {
           return filtered[key] = data.paths[key];
         });
+        if(data.basePath) {
+          _underscore2.default.each(Object.keys(filtered), function (route) {
+            filtered[data.basePath + route] = filtered[route];
+            delete filtered[route]
+          });
+        }
         data.paths = filtered;
         return data;
       });
@@ -97,7 +103,7 @@ var genDocs = function genDocs(schemes, suppre) {
         produces: null
       });
     });
-  });
+  })
 };
 
 exports.listUrl = listUrl;
