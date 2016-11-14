@@ -10,6 +10,8 @@ For example, you have the swagger documents at `http://service1/docs`, `http://s
 
 This will help you combine all links above to only one link `http://service/docs`
 
+**NOTE: If you need Gulp and something more, please seed branch (https://github.com/thanhson1085/swagger-combined/tree/added_gulp)[added_gulp]**
+
 ### Installation & Run from Docker
 ```
 docker run -d -p 3000:3000 thanhson1085/swagger-combined
