@@ -1,36 +1,24 @@
 {
   "name": "swagger-combined",
-  "version": "1.4.2",
+  "version": "1.4.0",
   "description": "Combines Swagger documents",
-  "main": "routes/app.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thanhson1085/swagger-combined.git"
   },
   "dependencies": {
-    "config": "1.21.0",
-    "express": "4.14.0",
-    "http-proxy": "1.14.0",
-    "q": "1.4.1",
-    "request": "2.73.0",
-    "swagger-ui": "2.1.4",
-    "underscore": "1.8.3"
+    "config": "^1.15.0",
+    "express": "^4.13.3",
+    "http-proxy": "^1.11.1",
+    "q": "^1.4.1",
+    "request": "^2.60.0",
+    "swagger-ui": "^2.1.3"
   },
-  "devDependencies": {
-    "babel-cli": "6.10.1",
-    "babel-polyfill": "6.9.1",
-    "babel-preset-es2015": "6.9.0",
-    "eslint": "3.0.1",
-    "eslint-config-standard": "^6.0.0-beta.0",
-    "eslint-plugin-promise": "^2.0.0",
-    "eslint-plugin-standard": "^2.0.0",
-    "gulp": "3.9.1",
-    "gulp-babel": "6.1.2",
-    "gulp-eslint": "^3.0.1",
-    "gulp-sourcemaps": "1.6.0",
-    "lazypipe": "^1.0.1"
+  "devDependencies": {},
+  "bin": {
+    "swagger-combined": "run.js"
   },
-  "bin": "./bin/swagger-combined.js",
   "scripts": {
     "test": "echo \"Not yet ready for test\" && exit 0"
   },
@@ -45,10 +33,15 @@
     "url": "https://sonnguyen.ws"
   },
   "license": "MIT",
+  "gitHead": "39d7e324dad2f540f569aaab2188767bae08f50f",
   "bugs": {
     "url": "https://github.com/thanhson1085/swagger-combined/issues"
   },
   "homepage": "https://github.com/thanhson1085/swagger-combined#readme",
+  "dist": {
+    "shasum": "54829d56373b9655fa31cbc3f979be18962c6b37",
+    "tarball": "http://registry.npmjs.org/swagger-combined/-/swagger-combined-1.2.0.tgz"
+  },
   "maintainers": [
     {
       "name": "thanhson1085",
