@@ -45,6 +45,7 @@ git clone https://github.com/thanhson1085/swagger-combined.git
 Run:
 ```
 cd swagger-combined
+npm install
 node index.js
 ```
 
