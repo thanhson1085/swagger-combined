@@ -29,6 +29,12 @@ app.get('/docs', function(req, res) {
         var ret = data.reduce(function(a, i){
             if (!a) {
                 a = i;
+                if (!a.definitions) {              
+                    a.definitions = {};            
+                }                                  
+                if (!a.paths) {                    
+                    a.paths = {};                  
+                }                                  
             }
             else{
                 // combines paths
