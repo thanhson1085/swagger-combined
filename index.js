@@ -29,12 +29,15 @@ app.get('/docs', function(req, res) {
         var ret = data.reduce(function(a, i){
             if (!a) {
                 a = i;
-                if (!a.definitions) {              
-                    a.definitions = {};            
-                }                                  
-                if (!a.paths) {                    
-                    a.paths = {};                  
-                }                                  
+                if (!a.definitions) {
+                    a.definitions = {};
+                }
+                if (!a.paths) {
+                    a.paths = {};
+                }
+                if (!a.tags) {
+                    a.tags = {};
+                }
             }
             else{
                 // combines paths
@@ -45,6 +48,10 @@ app.get('/docs', function(req, res) {
                 for (key in i.definitions){
                     a.definitions[key] = i.definitions[key];
                 }
+                // combines tags
+                for (key in i.tags){
+                    a.tags[key] = i.tags[key];
+                }
             }
             return a;
         }, false);
@@ -54,34 +61,34 @@ app.get('/docs', function(req, res) {
         ret.schemes = schemes;
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(ret));
-    }); 
+    });
 });
 var proxy = httpProxy.createProxyServer();
 
 listUrl.forEach(function(url){
     url.route_match.forEach(function(r){
         // GET proxy
-        app.get(r, function(req, res){ 
+        app.get(r, function(req, res){
             doForward(req, res, url.base_path, proxy);
         });
         // POST proxy
-        app.post(r, function(req, res){ 
+        app.post(r, function(req, res){
             doForward(req, res, url.base_path, proxy);
         });
         // PUT proxy
-        app.put(r, function(req, res){ 
+        app.put(r, function(req, res){
             doForward(req, res, url.base_path, proxy);
         });
         // PATCH proxy
-        app.patch(r, function(req, res){ 
+        app.patch(r, function(req, res){
             doForward(req, res, url.base_path, proxy);
         });
         // DELETE proxy
-        app.delete(r, function(req, res){ 
+        app.delete(r, function(req, res){
             doForward(req, res, url.base_path, proxy);
         });
         // OPTIONS proxy
-        app.options(r, function(req, res){ 
+        app.options(r, function(req, res){
             doForward(req, res, url.base_path, proxy);
         });
     });
@@ -92,8 +99,8 @@ var doForward = function(req, res, baseUrl, p) {
         console.log('doForward %s', baseUrl);
         console.log('With path', req.path);
         if (url.parse(baseUrl).protocol === 'https:') {
-            p.web(req, res, { 
-                target: baseUrl, 
+            p.web(req, res, {
+                target: baseUrl,
                 agent : https.globalAgent ,
                 headers: {
                     host: url.parse(baseUrl).hostname
@@ -103,7 +110,7 @@ var doForward = function(req, res, baseUrl, p) {
                 res.status(500).json({});
             });
         } else {
-            p.web(req, res, { 
+            p.web(req, res, {
                 target: baseUrl,
                 agent : http.globalAgent ,
                 headers: {
@@ -145,4 +152,3 @@ var getApis = function(urls){
     });
     return q.all(the_promises);
 }
-
