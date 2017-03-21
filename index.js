@@ -49,9 +49,7 @@ app.get('/docs', function(req, res) {
                     a.definitions[key] = i.definitions[key];
                 }
                 // combines tags
-                for (key in i.tags){
-                    a.tags[key] = i.tags[key];
-                }
+                a.tags = (a.tags || []).concat(i.tags || []);
             }
             return a;
         }, false);
