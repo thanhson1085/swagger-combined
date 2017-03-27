@@ -30,13 +30,13 @@ app.get('/docs', function(req, res) {
             if (!a) {
                 a = i;
                 if (!a.definitions) {
-                    a.definitions = {};
+                    a.definitions = [];
                 }
                 if (!a.paths) {
-                    a.paths = {};
+                    a.paths = [];
                 }
                 if (!a.tags) {
-                    a.tags = {};
+                    a.tags = [];
                 }
             }
             else{
