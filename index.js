@@ -28,28 +28,17 @@ app.get('/docs', function(req, res) {
     getApis(listUrl).then(function(data){
         var ret = data.reduce(function(a, i){
             if (!a) {
-                a = i;
-                if (!a.definitions) {
-                    a.definitions = {};
-                }
-                if (!a.paths) {
-                    a.paths = {};
-                }
-                if (!a.tags) {
-                    a.tags = {};
-                }
+                a = Object.assign({}, i);
+                a.paths = {};
+                a.definitions = {};
             }
-            else{
-                // combines paths
-                for (key in i.paths){
-                    a.paths[key] = i.paths[key];
-                }
-                // combines definitions
-                for (key in i.definitions){
-                    a.definitions[key] = i.definitions[key];
-                }
-                // combines tags
-                a.tags = (a.tags || []).concat(i.tags || []);
+            // combines paths
+            for (var key in i.paths){
+                a.paths[i.basePath + key] = i.paths[key];
+            }
+            // combines definitions
+            for (var k in i.definitions){
+                a.definitions[i.basePath + k] = i.definitions[k];
             }
             return a;
         }, false);
