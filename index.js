@@ -38,7 +38,7 @@ app.get('/docs', function(req, res) {
             }
             // combines definitions
             for (var k in i.definitions){
-                a.definitions[i.basePath + k] = i.definitions[k];
+                a.definitions[k] = i.definitions[k];
             }
             return a;
         }, false);
