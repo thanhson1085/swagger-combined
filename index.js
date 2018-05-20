@@ -17,6 +17,7 @@ app.use(function(req, res, next) {
 
 // list all swagger document urls
 var listUrl = config.get("list_url");
+var timeout = config.has("timeout") ? config.get ("timeout") : 5000;
 
 // general infor of your application
 var info = config.get("info");
@@ -38,7 +39,7 @@ app.get('/docs', function(req, res) {
             }
             // combines definitions
             for (var k in i.definitions){
-                a.definitions[i.basePath + k] = i.definitions[k];
+                a.definitions[k] = i.definitions[k];
             }
             return a;
         }, false);
@@ -126,14 +127,20 @@ var server = app.listen(port, function () {
 
 // get swagger json data from urls
 var getApis = function(urls){
+    // TODO: cache here
     var the_promises = [];
     urls.forEach(function(url){
         var def = q.defer();
-        request(url.docs, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                body = JSON.parse(body);
-                def.resolve(body);
-            }
+        request(url.docs,
+            {timeout: timeout},
+            function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    body = JSON.parse(body);
+                    def.resolve(body);
+                } else {
+                    console.error("url=%s, error=%j", url.docs, error);
+                    def.resolve({})
+                }
         });
         the_promises.push(def.promise);
     });
