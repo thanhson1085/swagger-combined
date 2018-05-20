@@ -1,11 +1,25 @@
 {
-    "list_url": [
-        {
-            "docs": "http://petstore.swagger.io/v2/swagger.json",
-            "base_path": "http://petstore.swagger.io/v2",
-            "route_match": ["/user*", "/pet*", "/store*"]
-        }
-    ],
-    "info": { "title": "Example API", "version": "1.0" },
+    "list_url": [{
+        "docs": "http://localhost/api/v1/swagger-fragments/user-service",
+        "base_path": "",
+        "route_match": []
+    }, {
+        "docs": "http://localhost/api/v1/swagger-fragments/reputation-service",
+        "base_path": "",
+        "route_match": []
+    }, {
+        "docs": "http://localhost/api/v1/swagger-fragments/workflow-service",
+        "base_path": "",
+        "route_match": []
+    }, {
+        "docs": "http://localhost/api/v1/swagger-fragments/dispatcher-service",
+        "base_path": "",
+        "route_match": []
+    }],
+    "info": {
+        "title": "Alegion API",
+        "version": "1.0"
+    },
+    "schemes": ["http"],
     "port": 3000
 }
