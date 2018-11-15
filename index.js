@@ -20,7 +20,9 @@ app.use(function(req, res, next) {
 var listUrl = config.get("list_url");
 console.log("list_url=%j", listUrl);
 var timeout = config.has("timeout") ? config.get ("timeout") : 5000;
+console.log("timeout=%s", timeout);
 var ttl = config.has("ttl") ? config.get("ttl") : 60000;
+console.log("ttl=%s", ttl);
 
 // general infor of your application
 var info = config.get("info");
@@ -132,8 +134,10 @@ var server = app.listen(port, function () {
 var getApis = function(urls){
     var cached = cache.get("services");
     if (cached != null) {
+        console.log("returning cached combined");
         return Promise.resolve(cached);
     }
+    console.log("cache is empty, getting fragments");
     var the_promises = [];
     urls.forEach(function(url){
         var def = q.defer();
@@ -161,9 +165,10 @@ var getApis = function(urls){
                 });
 
             if (urls.length === services.length) {
+                console.log("caching combined");
                 cache.put("services", services, ttl);
             } else {
-                console.log("services available %s/%s", services.length, urls.length);
+                console.log("not caching combined - services available %s/%s", services.length, urls.length);
             }
             return services;
         });

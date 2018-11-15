@@ -16,6 +16,7 @@
         "base_path": "",
         "route_match": []
     }],
+    "timeout": 10000,
     "info": {
         "title": "Alegion API",
         "version": "1.0"
