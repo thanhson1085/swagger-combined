@@ -27,14 +27,26 @@ app.get('/docs', function(req, res) {
     }
     getApis(listUrl).then(function(data){
         var ret = data.reduce(function(a, i){
+            var filters = i.filters;
+            i = i.body;
             if (!a) {
                 a = Object.assign({}, i);
                 a.paths = {};
                 a.definitions = {};
             }
+
             // combines paths
             for (var key in i.paths){
-                a.paths[i.basePath + key] = i.paths[key];
+                if (filters) {
+                    filters.forEach( function(filter){
+                        if ( !(key.startsWith(filter)) ){
+                            a.paths[i.basePath + key] = i.paths[key];
+                        }
+                    });
+                }
+                else {
+                    a.paths[i.basePath + key] = i.paths[key];
+                }
             }
             // combines definitions
             for (var k in i.definitions){
@@ -132,7 +144,8 @@ var getApis = function(urls){
         request(url.docs, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 body = JSON.parse(body);
-                def.resolve(body);
+                var result = { body: body, filters: url.filters };
+                def.resolve(result);
             }
         });
         the_promises.push(def.promise);
